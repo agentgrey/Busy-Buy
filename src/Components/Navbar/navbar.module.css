@@ -1,0 +1,51 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: #DFEDFD;
+  align-items: center;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 32px;
+  padding-left: 5px;
+  padding-bottom: 5px;
+  font-weight: bold;
+  color: #325C8C;
+}
+.title:hover {
+    cursor: pointer;
+    color: #FF8C00;
+}
+
+.menu {
+  display: flex;
+  gap: 16px;
+}
+.icon {
+    width: 20px;
+    height: 20px;
+}
+
+.menu button {
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+  font-weight: bold;
+  color: #4682B4;
+  height: 30px;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+.menu button:hover {
+    color: #1E3B56;
+}
+
+.menu button:focus {
+  outline: none;
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
+    color: #FF8C00;
+    padding-bottom: 5px;
+}
