@@ -9,19 +9,17 @@ function Home() {
     return (
         <>
             <div className={Style.container}>
-                {Data.map((item , index) =>(
-                    <>
-                        <div key={index} className= {Style.product}>
-                            <img src = {item.img} alt='Image' />
-                            <h2>{item.title}</h2>
-                            <h3>₹ {item.price}</h3>
-                            <NavLink >
-                                <button disabled =""  onClick="">
-                                    Add To Cart
-                                </button>
-                            </NavLink>
-                        </div>
-                    </>
+                {Data.map((item , id) =>(
+                    <div key={id} className= {Style.product}>
+                        <img src = {item.img} alt='Product' />
+                        <h2>{item.title}</h2>
+                        <h3>₹ {item.price}</h3>
+                        <NavLink >
+                            <button >
+                                Add To Cart
+                            </button>
+                        </NavLink>
+                    </div>
                 ))}
             </div>
         </>

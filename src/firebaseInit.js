@@ -9,6 +9,7 @@ import { getDatabase } from "firebase/database";
 const firebaseConfig = {
   apiKey: "AIzaSyAzK5nkIITELWFls_3pO4R1g-h6wDoCxIA",
   authDomain: "busy-buy-3a306.firebaseapp.com",
+  databaseURL: "https://busy-buy-3a306-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "busy-buy-3a306",
   storageBucket: "busy-buy-3a306.appspot.com",
   messagingSenderId: "419243436853",

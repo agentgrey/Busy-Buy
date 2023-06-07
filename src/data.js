@@ -42,7 +42,7 @@ const data = [
   },
   {
     id: 7,
-    img: 'https://m.media-amazon.com/images/I/81zqe4fNdlL._AC_UY327_FMwebp_QL65_.jpg',
+    img: 'https://m.media-amazon.com/images/I/41jkrjwW8BL._SX300_SY300_QL70_FMwebp_.jpg',
     title: 'Harry Potter Music Box',
     category: 'Kids',
     price: 449

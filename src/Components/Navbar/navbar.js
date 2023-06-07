@@ -7,7 +7,7 @@ import { useValue } from '../../context';
 
 
 function Navbar() {
-    const {userPresent} = useValue();
+    const {userPresent, handleLogout} = useValue();
 
     return (
         <>  
@@ -20,7 +20,7 @@ function Navbar() {
                     {userPresent ? <>
                         <button>My orders</button>
                         <button>Cart</button>
-                        <button>Logout</button> </>
+                        <NavLink onClick={handleLogout} to="/"> <button>Logout</button> </NavLink> </>
                     : 
                         <NavLink to="/signin"> <button>SignIn</button> </NavLink>
                     }
