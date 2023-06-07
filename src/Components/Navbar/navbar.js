@@ -7,7 +7,12 @@ import { useValue } from '../../context';
 
 
 function Navbar() {
-    const {userPresent, handleLogout} = useValue();
+    const {userPresent, handleLogout, searchTerm, setSearchTerm} = useValue();
+
+// Function to handle search term change
+    const handleSearchTermChange = (e) => {
+        setSearchTerm(e.target.value);
+    };
 
     return (
         <>  
@@ -15,11 +20,15 @@ function Navbar() {
                 <div className={Style.title}>
                     Diagon Bazaar
                 </div>
+                <div className={Style.searchBar}>
+                    <input type="text" placeholder="Search..." 
+                    value={searchTerm} onChange={handleSearchTermChange}/>
+                </div>
                 <div className={Style.menu}>
-                    <NavLink to="/"> <button autoFocus>Home</button> </NavLink>
+                    <NavLink to="/"> <button>Home</button> </NavLink>
                     {userPresent ? <>
                         <button>My orders</button>
-                        <button>Cart</button>
+                        <NavLink to="/cart"> <button>Cart</button> </NavLink>
                         <NavLink onClick={handleLogout} to="/"> <button>Logout</button> </NavLink> </>
                     : 
                         <NavLink to="/signin"> <button>SignIn</button> </NavLink>

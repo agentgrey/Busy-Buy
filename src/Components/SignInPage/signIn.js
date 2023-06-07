@@ -1,7 +1,7 @@
 // import CSS
 import Style from "./signIn.module.css"
 // import 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 // import Router
 import { Link } from 'react-router-dom';
 // import Database
@@ -15,6 +15,18 @@ function SignIn() {
     const passwordRef = useRef();
     const [error, setError] = useState(null);
     const [loading, setIsLoading] = useState(false);
+
+    useEffect(() => {
+        // Check if the user is already signed in
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+        if (user) {
+            // User is already signed in, redirect to home page
+            window.location.href = '/';
+        }
+        });
+
+        return () => unsubscribe();
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();

@@ -3,7 +3,7 @@ import React, { createContext, useState, useContext, useEffect } from "react";
 // Importing Database
 import {signOut, onAuthStateChanged} from 'firebase/auth';
 import { auth} from './firebaseInit';
-
+// context object
 const itemContext = createContext();
 
 function useValue() {
@@ -13,6 +13,7 @@ function useValue() {
 
 function CustomContext({ children }) {
   const [userPresent, setUserPresent] = useState(true);
+  const [searchTerm, setSearchTerm] = useState('');
 
 // Used for checking if the user is there or not.
   useEffect(() => {
@@ -20,13 +21,9 @@ function CustomContext({ children }) {
         if (user) {
           // User is signed in
           setUserPresent(true);
-          
-          // console.log('User is signed in:', user);
         } else {
           // User is signed out
           setUserPresent(false);
-          // toast.success("Logged Out !");
-          //console.log('User is signed out');
         }
       });
   
@@ -50,9 +47,8 @@ function CustomContext({ children }) {
   }
 
 
-
   return (
-    <itemContext.Provider value={{ userPresent, handleLogout, setUserPresent}}>
+    <itemContext.Provider value={{ userPresent, handleLogout, searchTerm, setSearchTerm}}>
       {children}
     </itemContext.Provider>
   );

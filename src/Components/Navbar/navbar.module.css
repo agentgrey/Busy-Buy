@@ -19,6 +19,27 @@
     color: #FF8C00;
 }
 
+.searchBar {
+  margin: 0 20px;
+}
+
+.searchBar input {
+  width: 200%;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 15px;
+  transition: box-shadow 0.3s ease;
+}
+
+.searchBar input:focus {
+  outline: none;
+  box-shadow: 0 4px 8px #ff8c0033;
+}
+
+
 .menu {
   display: flex;
   gap: 16px;

@@ -5,6 +5,7 @@ import Navbar from "./Components/Navbar/navbar";
 import SignUp from "./Components/SignUpPage/signUp";
 import SignIn from "./Components/SignInPage/signIn";
 import Home from "./Components/Home/home";
+import Cart from "./Components/Cart/cart";
 // Import Router
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 // import CustomContext
@@ -19,7 +20,7 @@ function App() {
         { path: '/', element: <Home /> },
         { path: '/signup', element: <SignUp /> },
         { path: '/signin', element: <SignIn /> },
-        // { path: '/cart', element: <Cart /> },
+        { path: '/cart', element: <Cart /> },
         // { path: '/order', element: <Order /> }
       ]
     }
