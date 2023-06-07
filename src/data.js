@@ -1,116 +1,143 @@
 const data = [
-    {
-        id: 1,
-        img : 'https://m.media-amazon.com/images/I/61o7dUNtdsL._UY606_.jpg',
-        title : 'Men Half T-Shirt',
-        category : 'Men',
-        price : 4000,
-        value : 'Add To Cart'
-    },
-    {
-        id: 2,
-        img : 'https://m.media-amazon.com/images/I/811Lmm9A2TL._UL1500_.jpg',
-        title : 'OZIL Basket Ball Shoe',
-        category : 'Men',
-        price : 7000,
-        value : 'Add To Cart'
-    },
-    {
-        id: 3,
-        img : 'https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1662130112_1367320.jpg?w=480&dpr=1.3',
-        title : 'High Star Men T-shirt',
-        category : 'Men',
-        price : 3000,
-        value : 'Add To Cart'
-    },
-    {
-        id: 4,
-        img : 'https://contents.mediadecathlon.com/p1853013/94dfbdfdaf2d2d0de18f664ace6d4efd/p1853013.jpg?format=auto&quality=70&f=650x0',
-        title : 'Funday Womens Jacket',
-        category : 'Women',
-        price : 3000,
-        value : 'Add To Cart'
-    },
-    {
-        id: 5,
-        img : 'https://m.media-amazon.com/images/I/61o7dUNtdsL._UY606_.jpg',
-        title : 'Men Half T-Shirt',
-        category : 'Men',
-        price : 4000,
-        value : 'Add To Cart'
-    },
-    {
-        id: 6,
-        img : 'https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1662130112_1367320.jpg?w=480&dpr=1.3',
-        title : 'The Roadster Style Company',
-        category : 'Men',
-        price : 4000,
-        value : 'Add To Cart'
-    },
-    {
-        id: 7,
-        img : 'https://m.media-amazon.com/images/I/61o7dUNtdsL._UY606_.jpg',
-        title : 'Men Half T-Shirt',
-        category : 'Men',
-        price : 4000,
-        value : 'Add To Cart'
-    },
-    
-    {
-        id: 8,
-        img : 'https://rukminim1.flixcart.com/image/832/832/l1l1rww0/watch/5/w/u/1-black-dial-digital-watch-for-boys-black-sports-watch-men-original-imagd4yzszbgba39.jpeg?q=70',
-        title : 'Watch',
-        category : 'Men',
-        price : 4000,
-        value : 'Add To Cart'
-    },
-
-    {
-        id: 9,
-        img : 'https://i02.appmifile.com/306_operator_in/28/01/2021/b86eaaff907d7564077d830b053a15fb!800x800!85.png',
-        title : 'MI 42inches TV',
-        category : 'Electronics',
-        price : 40000,
-        value : 'Add To Cart'
-    },
-
-    {
-        id: 10,
-        img : 'https://m.media-amazon.com/images/I/61o7dUNtdsL._UY606_.jpg',
-        title : 'Men Half T-Shirt',
-        category : 'Men',
-        price : 4000,
-        value : 'Add To Cart'
-    },
-
-    {
-        id: 11,
-        img : 'https://images.samsung.com/is/image/samsung/p6pim/in/sm-p613nzaeinu/gallery/in-galaxy-tab-s6-lite-p610-428695-428695-sm-p613nzaeinu-534744419?$2052_1641_PNG$',
-        title : 'Vivo Tablet ',
-        category : 'Electronics',
-        price : 14000,
-        value : 'Add To Cart'
-    },
-
-    {
-        id: 12,
-        img : 'https://m.media-amazon.com/images/I/81LMvUUqQ3L._UL1500_.jpg',
-        title : '24 carret Gold',
-        category : 'Jwellery',
-        price : 40000,
-        value : 'Add To Cart'
-    },
-
-    {
-        id: 13,
-        img : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRkwSYImlwZtGoIzUHZXV1R2cWqW8ev_iMrA&usqp=CAU',
-        title : 'Clothing',
-        category : 'Women',
-        price : 400,
-        value : 'Add To Cart'
-    },
-
-
+  {
+    id: 1,img: 'https://m.media-amazon.com/images/I/61x38kEipaL._AC_UL600_QL65_.jpg',
+    title: 'Graphic T-shirt',
+    category: 'Men',
+    price: 576
+  },
+  {
+    id: 2,
+    img: 'https://m.media-amazon.com/images/I/61JvGG00JBS._AC_UL600_QL65_.jpg',
+    title: 'Round Neck T-shirt',
+    category: 'Men',
+    price: 734
+  },
+  {
+    id: 3,
+    img: 'https://m.media-amazon.com/images/I/81fCzXR0WyL._AC_UL600_QL65_.jpg',
+    title: 'Women T-Shirt',
+    category: 'Women',
+    price: 349
+  },
+  {
+    id: 4,
+    img: 'https://m.media-amazon.com/images/I/71+ZShLtNsL._AC_UL600_QL65_.jpg',
+    title: 'Printed Denim Jacket',
+    category: 'Men',
+    price: 2015
+  },
+  {
+    id: 5,
+    img: 'https://m.media-amazon.com/images/I/91VUHcww2pL._AC_UL600_QL65_.jpg',
+    title: 'Maurauders Map',
+    category: 'Books',
+    price: 499
+  },
+  {
+    id: 6,
+    img: 'https://m.media-amazon.com/images/I/81udqYB5obL._AC_UL600_QL65_.jpg',
+    title: 'Backpack (25L)',
+    category: 'Accessories',
+    price: 1200
+  },
+  {
+    id: 7,
+    img: 'https://m.media-amazon.com/images/I/81zqe4fNdlL._AC_UY327_FMwebp_QL65_.jpg',
+    title: 'Harry Potter Music Box',
+    category: 'Kids',
+    price: 449
+  },
+  {
+    id: 8,
+    img: 'https://m.media-amazon.com/images/I/416b2UV8GKL._AC_UL600_QL65_.jpg',
+    title: 'Cotton Hoodie',
+    category: 'Men',
+    price: 799
+  },
+  {
+    id: 9,
+    img: 'https://m.media-amazon.com/images/I/81Sn3W3gYlL._AC_UL600_QL65_.jpg',
+    title: 'Multicolor A5 Notebook',
+    category: 'Books',
+    price: 349
+  },
+  {
+    id: 10,
+    img: 'https://m.media-amazon.com/images/I/51oRB-F3gAL._AC_UL600_QL65_.jpg',
+    title: 'Deathly Hallows Pendant',
+    category: 'Accessories',
+    price: 185
+  },
+  {
+    id: 11,
+    img: 'https://m.media-amazon.com/images/I/61QcFGiYNvL._AC_UL600_QL65_.jpg',
+    title: 'Spell and Charm Pocket Dress',
+    category: 'Women',
+    price: 949
+  },
+  {
+    id: 12,
+    img: 'https://m.media-amazon.com/images/I/81zqe4fNdlL._AC_UY327_FMwebp_QL65_.jpg',
+    title: 'Harry Potter Books Set (Paperback)',
+    category: 'Books',
+    price: 2240
+  },
+  {
+    id: 13,
+    img: 'https://m.media-amazon.com/images/I/61wrzJBwrwL._AC_UL600_QL65_.jpg',
+    title: 'Multicolor Scarf',
+    category: 'Accessories',
+    price: 699
+  },
+  {
+    id: 14,
+    img: 'https://m.media-amazon.com/images/I/81NtRnbdJKL._AC_UL600_QL65_.jpg',
+    title: 'Knit Scarf Set',
+    category: 'Kids',
+    price: 9648
+  },
+  {
+    id: 15,
+    img: 'https://m.media-amazon.com/images/I/718rHbRVZ9L._AC_UL600_QL65_.jpg',
+    title: 'Hermione Costume',
+    category: 'Women',
+    price: 9098
+  },
+  {
+    id: 16,
+    img: 'https://m.media-amazon.com/images/I/81sE4hJRhVL._AC_UL600_QL65_.jpg',
+    title: 'Hufflepuff Tie',
+    category: 'Accessories',
+    price: 6168
+  },
+  {
+    id: 17,
+    img: 'https://m.media-amazon.com/images/I/61u6FwFCcCL._AC_UL600_QL65_.jpg',
+    title: 'Kids Hoodie',
+    category: 'Kids',
+    price: 650
+  },
+  {
+    id: 18,
+    img: 'https://m.media-amazon.com/images/I/61ehUGm-UrL._AC_UL600_QL65_.jpg',
+    title: 'Round Neck T-shirt',
+    category: 'Men',
+    price: 1855
+  },
+  {
+    id: 19,
+    img: 'https://m.media-amazon.com/images/I/71V9mhQeAML._AC_UL600_FMwebp_QL65_.jpg',
+    title: 'Double Strap Backpack',
+    category: 'Accessories',
+    price: 9929
+  },
+  {
+    id: 20,
+    img: 'https://m.media-amazon.com/images/I/61bxewzVk6L._AC_UL600_FMwebp_QL65_.jpg',
+    title: 'Women Clutch Bag',
+    category: 'Women',
+    price: 12378
+  }
 ];
 
 export default data;

@@ -1,6 +1,6 @@
-// Importing CSS
+// Import CSS
 import Style from './home.module.css';
-// Importing some Dependencies
+// Import Dependencies
 import Data from '../../data';
 import {NavLink} from "react-router-dom";
 

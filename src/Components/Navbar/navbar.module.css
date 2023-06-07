@@ -23,10 +23,6 @@
   display: flex;
   gap: 16px;
 }
-.icon {
-    width: 20px;
-    height: 20px;
-}
 
 .menu button {
   border: none;
@@ -45,7 +41,7 @@
 
 .menu button:focus {
   outline: none;
-    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
-    color: #FF8C00;
-    padding-bottom: 5px;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
+  color: #FF8C00;
+  padding-bottom: 5px;
 }
