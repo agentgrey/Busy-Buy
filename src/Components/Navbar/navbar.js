@@ -20,18 +20,23 @@ function Navbar() {
                 <div className={Style.title}>
                     Diagon Bazaar
                 </div>
+                {userPresent ?
                 <div className={Style.searchBar}>
                     <input type="text" placeholder="Search..." 
                     value={searchTerm} onChange={handleSearchTermChange}/>
-                </div>
+                </div> : "" }
                 <div className={Style.menu}>
-                    <NavLink to="/"> <button>Home</button> </NavLink>
+                    <NavLink to="/" style={({isActive})=>isActive ? { color: "#FF8C00", boxShadow: "0 2px 0 rgba(0, 0, 0, 0.2)" } : {}}> Home </NavLink>
+                    
                     {userPresent ? <>
-                        <button>My orders</button>
-                        <NavLink to="/cart"> <button>Cart</button> </NavLink>
-                        <NavLink onClick={handleLogout} to="/"> <button>Logout</button> </NavLink> </>
+                        <NavLink to="/myOrders" style={({isActive})=>isActive ? { color: "#FF8C00", boxShadow: "0 2px 0 rgba(0, 0, 0, 0.2)" } : {}}>  My orders </NavLink>
+
+                        <NavLink to="/cart" style={({isActive})=>isActive ? { color: "#FF8C00", boxShadow: "0 2px 0 rgba(0, 0, 0, 0.2)" } : {}}> Cart</NavLink>
+
+                        <NavLink onClick={handleLogout} to="/home"
+                            style={({isActive})=>isActive ? { color: "#FF8C00", boxShadow: "0 2px 0 rgba(0, 0, 0, 0.2)" } : {}}> Logout </NavLink> </>
                     : 
-                        <NavLink to="/signin"> <button>SignIn</button> </NavLink>
+                        <NavLink to="/signin" style={({isActive})=>isActive ? { color: "#FF8C00", boxShadow: "0 2px 0 rgba(0, 0, 0, 0.2)" } : {}}> SignIn </NavLink>
                     }
                 </div>
             </div>

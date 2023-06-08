@@ -2,10 +2,10 @@
 import "./index.css";
 // Import Components
 import Navbar from "./Components/Navbar/navbar";
-import SignUp from "./Components/SignUpPage/signUp";
-import SignIn from "./Components/SignInPage/signIn";
-import Home from "./Components/Home/home";
-import Cart from "./Components/Cart/cart";
+import SignUp from "./Pages/SignUpPage/signUp";
+import SignIn from "./Pages/SignInPage/signIn";
+import Home from "./Pages/Home/home";
+import Cart from "./Pages/Cart/cart";
 // Import Router
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 // import CustomContext
@@ -18,6 +18,7 @@ function App() {
       element: <Navbar />,
       children: [
         { path: '/', element: <Home /> },
+        { path: '/home', element: <Home /> },
         { path: '/signup', element: <SignUp /> },
         { path: '/signin', element: <SignIn /> },
         { path: '/cart', element: <Cart /> },

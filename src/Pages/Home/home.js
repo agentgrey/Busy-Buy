@@ -1,10 +1,10 @@
 import Style from './home.module.css';
-import Data from '../../data';
+import Data from '../../Data/data';
 import { NavLink } from 'react-router-dom';
 import { useValue } from '../../context';
 
 function Home() {
-  const { searchTerm } = useValue();
+  const { searchTerm, handleAdd} = useValue();
   const dataArray = Object.values(Data); 
 
 // Filter the products based on the search term
@@ -21,7 +21,7 @@ function Home() {
             <h2>{item.title}</h2>
             <h3>₹ {item.price}</h3>
             <NavLink>
-              <button>Add To Cart</button>
+              <button onClick={()=>handleAdd(item)}>Add To Cart</button>
             </NavLink>
           </div>
         ))}
