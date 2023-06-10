@@ -1,4 +1,25 @@
-# Getting Started with Create React App
+# Busy Buy
+
+Busy Buy is an e-commerce web application built with React.js and Firebase. It allows users to browse and purchase a wide range of products online. The application includes features such as user authentication, product filtering, shopping cart management, and order placement.
+
+Live Link : https://diagon-bazaar.netlify.app/
+
+## Key Features
+
+- User registration and authentication: Users can create accounts and log in to the application securely.
+- Product browsing: Users can browse through various product categories and view detailed information about each product.
+- Product filtering: Users can filter products based on categories and price range.
+- Shopping cart management: Users can add products to their cart, update quantities, and remove items.
+- Order placement: Users can place orders and view their order history.
+- Toast notifications: Informative toast notifications are displayed for successful actions and error messages.
+
+## Technologies Used
+
+- React.js: JavaScript library for building user interfaces.
+- Firebase: Platform for building web and mobile applications with a cloud-based backend.
+- React Router: Library for handling routing in a React application.
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
