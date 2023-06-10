@@ -1,20 +1,24 @@
-// import CSS
+/** ------------------ IMPORTING CSS ------------------ **/
 import Style from "./signIn.module.css"
-// import 
+/** ------------------ IMPORTING HOOKS ------------------ **/
 import { useState, useRef, useEffect } from 'react';
-// import Router
+/** ------------------ IMPORTING ROUTER MODULES ------------------ **/
 import { Link } from 'react-router-dom';
-// import Database
+/** ------------------ IMPORTING FIREBASE MODULES ------------------ **/
 import {auth} from '../../firebaseInit';
 import { signInWithEmailAndPassword  } from "firebase/auth";
+/** ------------------ IMPORTING TOAST MODULES ------------------ **/
+import { toast } from 'react-toastify';
 
 
+
+/** ------------------ Function to display Sign In page ------------------ **/
 function SignIn() {
 
     const emailRef = useRef();
     const passwordRef = useRef();
     const [error, setError] = useState(null);
-    const [loading, setIsLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         // Check if the user is already signed in
@@ -28,6 +32,7 @@ function SignIn() {
         return () => unsubscribe();
     }, []);
 
+/** ------------------ Handles user Sign In ------------------ **/
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -35,18 +40,28 @@ function SignIn() {
         const password = passwordRef.current.value;
 
         try {
-            setIsLoading(true);
+            setLoading(true);
             await signInWithEmailAndPassword(auth, email, password);
             // Sign-in successful, redirect to home page
+            toast.success("You are now Signed In!");
             window.location.href = '/';
         } catch (error) {
             const errorCode = error.code;
             const errorMessage = error.message;
             setError(error);
+            handleClear();
             console.error("Error signing in:", errorCode, errorMessage);
         }
-        setIsLoading(false);
+        setLoading(false);
     };
+
+/** ------------------ Clears the form input ------------------ **/
+    function handleClear() {
+        emailRef.current.value = "";
+        passwordRef.current.value = "";
+    }
+
+
 
     return (
         <>
@@ -54,9 +69,10 @@ function SignIn() {
                 <h1> आपका स्वागत है <img src="https://cdn-icons-png.flaticon.com/128/317/317579.png"
                     className={Style.namaste} alt="Namaste"/></h1>
                 <form onSubmit={handleSubmit}>
+                    {error ? <p style={{"color": "red", "margin": "auto"}}>{error.message}</p> : null}     
                     <input type="email" placeholder="Email" ref={emailRef} /> <br />
                     <input type="password" placeholder="Password" ref={passwordRef} /> <br />
-                    <button  type="submit">Sign In</button>
+                    <button type="submit">{loading ? 'Loading...' : 'Sign In'}</button>
                     <Link to="/signup">Create a new Account</Link>
                 </form>
             </div>

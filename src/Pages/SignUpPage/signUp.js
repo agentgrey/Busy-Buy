@@ -1,22 +1,27 @@
-// import CSS
+/** ------------------ IMPORTING CSS ------------------ **/
 import Style from "./signUp.module.css";
-// import 
+/** ------------------ IMPORTING HOOKS ------------------ **/
 import { useState, useRef } from 'react';
-// import Router
+/** ------------------ IMPORTING ROUTER MODULES ------------------ **/
 import { Link } from 'react-router-dom';
-// import firebase
+/** ------------------ IMPORTING FIREBASE MODULES ------------------ **/
 import {auth, database} from '../../firebaseInit';
 import { set, ref } from "firebase/database";
 import { createUserWithEmailAndPassword  } from "firebase/auth";
+/** ------------------ IMPORTING TOAST MODULES ------------------ **/
+import { toast } from 'react-toastify';
 
+
+
+/** ------------------ Function to display Sign Up page ------------------ **/
 function SignUp() {
     const nameRef = useRef();
     const emailRef = useRef();
     const passwordRef = useRef();
     const[error, setError] = useState(null);
-    const [loading, setIsLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
 
-// function to create user
+/** ------------------ Handles user Sign Up ------------------ **/
     const handleSubmit = async(e) => {
         e.preventDefault();
 
@@ -25,7 +30,7 @@ function SignUp() {
         const password = passwordRef.current.value;
         
         try {
-            setIsLoading(true);
+            setLoading(true);
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
             // Store the user in the Firebase Realtime Database
@@ -35,23 +40,24 @@ function SignUp() {
             });
             // Clear the input fields after successful signup
             handleClear();
-            console.log("Signed up successfully ", auth)
+            toast.success("You are now Signed Up!");
             // Sign-in successful, redirect to home page
             window.location.href = '/';
         } catch(error) {
-            const errorCode = error.code;
-            const errorMessage = error.message;
             setError(error);
-            console.error("Error signing up:", errorCode, errorMessage);
+            toast.error(error.message);
         }
-        setIsLoading(false);
+        setLoading(false);
     }
-// function to clear the input fields
+
+/** ------------------ Clears the form input ------------------ **/
     function handleClear() {
         nameRef.current.value = "";
         emailRef.current.value = "";
         passwordRef.current.value = "";
     }
+
+
 
     return (
         <>
@@ -59,10 +65,11 @@ function SignUp() {
                 <h1> नमस्ते! <img src="https://cdn-icons-png.flaticon.com/128/317/317579.png"
                     className={Style.namaste} alt="Namaste"/></h1>
                 <form onSubmit={handleSubmit}>
+                    {error ? <p style={{"color": "red", "margin": "auto"}}>{error.message}</p> : null}  
                     <input type="text" placeholder="Name" ref={nameRef} /> <br />
                     <input type="email" placeholder="Email" ref={emailRef} /> <br />
                     <input type="password" placeholder="Password" ref={passwordRef} /> <br />
-                    <button  type="submit">Sign Up</button>
+                    <button  type="submit">{loading ? 'Loading...' : 'Sign Up'}</button>
                     <Link to="/signin">Already have an Account?</Link>
                 </form>
             </div>

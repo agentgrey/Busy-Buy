@@ -30,7 +30,7 @@ const data = [
     id: 5,
     img: 'https://m.media-amazon.com/images/I/91VUHcww2pL._AC_UL600_QL65_.jpg',
     title: 'Maurauders Map',
-    category: 'Books',
+    category: 'Stationery',
     price: 499
   },
   {
@@ -44,7 +44,7 @@ const data = [
     id: 7,
     img: 'https://m.media-amazon.com/images/I/41jkrjwW8BL._SX300_SY300_QL70_FMwebp_.jpg',
     title: 'Harry Potter Music Box',
-    category: 'Kids',
+    category: 'Stationery',
     price: 449
   },
   {
@@ -58,7 +58,7 @@ const data = [
     id: 9,
     img: 'https://m.media-amazon.com/images/I/81Sn3W3gYlL._AC_UL600_QL65_.jpg',
     title: 'Multicolor A5 Notebook',
-    category: 'Books',
+    category: 'Stationery',
     price: 349
   },
   {
@@ -79,7 +79,7 @@ const data = [
     id: 12,
     img: 'https://m.media-amazon.com/images/I/81zqe4fNdlL._AC_UY327_FMwebp_QL65_.jpg',
     title: 'Harry Potter Books Set (Paperback)',
-    category: 'Books',
+    category: 'Stationery',
     price: 2240
   },
   {
@@ -137,6 +137,68 @@ const data = [
     title: 'Women Clutch Bag',
     category: 'Women',
     price: 12378
+  },
+  {
+    id: 21,
+    img: 'https://m.media-amazon.com/images/I/61aRtUJfDSL._AC_UY327_FMwebp_QL65_.jpg',
+    title: 'Hogwarts Acceptance Letter',
+    category: 'Stationery',
+    price: 2919
+  }
+  ,
+  {
+    id: 22,
+    img: 'https://m.media-amazon.com/images/I/71hVEPGVuXL._AC_UL600_FMwebp_QL65_.jpg',
+    title: 'Printed Half Sleeve TShirt',
+    category: 'Kids',
+    price: 329
+  }
+  ,
+  {
+    id: 23,
+    img: 'https://m.media-amazon.com/images/I/61d77CmVRhL._AC_UL600_FMwebp_QL65_.jpg',
+    title: 'Floating Fake Candles With Wand Remote',
+    category: 'Electronics',
+    price: 5923
+  }
+  ,
+  {
+    id: 24,
+    img: 'https://m.media-amazon.com/images/I/51PK4KcR-5L._AC_UL600_FMwebp_QL65_.jpg',
+    title: 'Scratch Resistant Vinyl Phone Cover',
+    category: 'Electronics',
+    price: 201
+  },
+  {
+    id: 25,
+    img: 'https://m.media-amazon.com/images/I/81-cJw8SwUL._UX679_.jpg',
+    title: 'Pocket Watch Keychain',
+    category: 'Accessories',
+    price: 499
+  }
+  ,
+  {
+    id: 26,
+    img: 'https://m.media-amazon.com/images/I/61vnltk9gBL._AC_UL600_FMwebp_QL65_.jpg',
+    title: 'Coin Purse',
+    category: 'Women',
+    price: 3673
+  }
+  ,
+  {
+    id: 27,
+    img: 'https://m.media-amazon.com/images/I/71u5R8iivdL._AC_UL600_FMwebp_QL65_.jpg',
+    title: 'Kids Flip Flops',
+    category: 'Kids',
+    price: 769
+  }
+  ,
+  {
+    id: 28,
+    img: 'https://m.media-amazon.com/images/I/618GH+5l5xL._AC_UL600_FMwebp_QL65_.jpg',
+    title: 'Dumbledore Flash Drive',
+    category: 'Electronics',
+    price: 4958
   }
 ];
 

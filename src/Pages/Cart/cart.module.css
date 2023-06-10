@@ -8,6 +8,13 @@
   justify-content: space-between;
 }
 
+.emptyCart {
+  color: #325C8C;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
 .itemList {
   list-style: none;
   padding: 0;

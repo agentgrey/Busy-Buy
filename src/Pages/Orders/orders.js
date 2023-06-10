@@ -6,10 +6,14 @@ import { useValue } from '../../context';
 /** ------------------ IMPORTING FIREBASE MODULES ------------------ **/
 import { ref, onValue } from 'firebase/database';
 import { auth, database } from '../../firebaseInit';
+/** ------------------ IMPORTING SPINNER MODULES ------------------ **/
+import Loader from '../../Components/Loader/loader';
 
 /** ------------------ Function to display orders page ------------------ **/
 function Order() {
-  const [orderItems, setOrderItems] = useState([]); // Use useState to store the order items
+  const [orderItems, setOrderItems] = useState([]); 
+  const {isLoading, setIsLoading} = useValue();
+
 
   useEffect(() => {
     const user = auth.currentUser;
@@ -22,18 +26,24 @@ function Order() {
     const orderRef = ref(database, `myOrders/${userId}`);
 
     onValue(orderRef, (snapshot) => {
+      setIsLoading(true);
       const data = snapshot.val();
       const ordersArray = data ? Object.values(data) : [];
       setOrderItems(ordersArray.reverse());
     });
+    setIsLoading(false);
+  }, [setIsLoading]);
 
-  }, []);
+/** ------------------ For displaying the loader ------------------ **/
+  if(isLoading) { return <Loader /> }
+
+
 
   return (
     <>
       <h1 className={Style.page_title}>My Orders</h1>
       <div className={Style.order_container}>
-        {orderItems.length === 0 ? (
+        {isLoading==='false' || orderItems.length === 0 ? (
           <p className={Style.no_order}>📭 Oops! Looks like there are no orders yet. 🤷‍♀️</p>
         ) : (
           orderItems.map((order, index) => (

@@ -20,9 +20,9 @@ function Navbar() {
   return (
     <>
       <div className={Style.navbar}>
-        <div className={Style.title}>
+        <NavLink to="/" className={Style.title}>
           Diagon Bazaar
-        </div>
+        </NavLink>
         {userPresent &&
           <div className={Style.searchBar}>
             <input

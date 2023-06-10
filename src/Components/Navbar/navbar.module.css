@@ -8,13 +8,14 @@
 }
 
 .title {
+  text-decoration: none;
   font-size: 32px;
   padding-left: 5px;
   padding-bottom: 5px;
   font-weight: bold;
   color: #325C8C;
 }
-.title:hover {
+.title:active {
     cursor: pointer;
     color: #FF8C00;
 }
@@ -28,15 +29,13 @@
   padding: 8px;
   border: none;
   border-radius: 4px;
-  background-color: #FFFFFF;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-size: 15px;
   transition: box-shadow 0.3s ease;
 }
 
 .searchBar input:focus {
   outline: none;
-  box-shadow: 0 4px 8px #ff8c0033;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -58,6 +57,6 @@
 }
 
 .menu a:hover {
-    color: #1E3B56;
+    color: #325C8C;
 }
 

@@ -6,20 +6,19 @@ import { useValue } from "../../context";
 /** ------------------ IMPORTING FIREBASE MODULES------------------ **/
 import { ref, get } from 'firebase/database';
 import { database, auth } from '../../firebaseInit';
+/** ------------------ IMPORTING SPINNER MODULES ------------------ **/
+import Loader from '../../Components/Loader/loader';
+/** ------------------ IMPORTING TOAST MODULES ------------------ **/
+import { toast } from 'react-toastify';
 
 
 
 /** ------------------ Function to display the Cart Page ------------------ **/
 function Cart() {
 
-  const { cartItems,
-        setCartItems,
-        cartTotal,
-        setCartTotal,
-        handleRemove,
-        handleAdd,
-        handleDecrease,
-        placeOrder} = useValue();
+  const { cartItems, setCartItems, cartTotal, setCartTotal,
+        handleRemove, handleAdd, handleDecrease, placeOrder,
+        isLoading, setIsLoading} = useValue();
 
 /** ------------------ Fetches data from database ------------------ **/
   useEffect(() => {
@@ -34,6 +33,7 @@ function Cart() {
     const cartTotalRef = ref(database, `usersCarts/${userId}/cartTotal`);
 
     const fetchCartData = async () => {
+      setIsLoading(true);
       try {
         const [cartSnapshot, cartTotalSnapshot] = await Promise.all([
           get(cartRef),
@@ -52,11 +52,15 @@ function Cart() {
         }
       } catch (error) {
         console.error(error);
+        toast.error(error.message);
       }
+      setIsLoading(false);
     };
-
     fetchCartData();
-  }, [setCartItems, setCartTotal]);
+  }, [setCartItems, setCartTotal, setIsLoading]);
+
+/** ------------------ For displaying the loader ------------------ **/
+  if(isLoading) { return <Loader /> }
 
 
 
@@ -71,7 +75,7 @@ function Cart() {
           </div> }
       </div>
       {cartItems.length === 0 ? (
-        <h2>Your cart is empty.</h2>
+        <p className={Style.emptyCart} >Cart status: Lonely and empty. It's time to give it some shopping love!</p>
       ) : (
         <ul className={Style.itemList}>
           {cartItems.map((item) => (

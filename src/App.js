@@ -11,6 +11,9 @@ import Cart from "./Pages/Cart/cart";
 import Order from "./Pages/Orders/orders";
 /** ------------------ IMPORTING ROUTER MODULES ------------------ **/
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+/** ------------------ IMPORTING TOAST MODULES ------------------ **/
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -31,7 +34,8 @@ function App() {
   ]);
 
   return (
-    <CustomContex>
+    <CustomContex> 
+      <ToastContainer/>
       <RouterProvider router={router}/>
     </CustomContex>
   );
