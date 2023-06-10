@@ -1,25 +1,27 @@
-// import CSS
+/** ------------------ IMPORTING CSS ------------------ **/
 import Style from "./cart.module.css";
-// import Hooks
+/** ------------------ IMPORTING HOOKS ------------------ **/
 import { useEffect } from "react";
-// import Router
-import { NavLink } from "react-router-dom";
-// import Dependencies
 import { useValue } from "../../context";
-// import Database
+/** ------------------ IMPORTING FIREBASE MODULES------------------ **/
 import { ref, get } from 'firebase/database';
 import { database, auth } from '../../firebaseInit';
 
+
+
+/** ------------------ Function to display the Cart Page ------------------ **/
 function Cart() {
-  // Access the cart items from the CartContext
+
   const { cartItems,
         setCartItems,
         cartTotal,
         setCartTotal,
         handleRemove,
         handleAdd,
-        handleDecrease} = useValue();
+        handleDecrease,
+        placeOrder} = useValue();
 
+/** ------------------ Fetches data from database ------------------ **/
   useEffect(() => {
     const user = auth.currentUser;
     if (!user) {
@@ -37,7 +39,6 @@ function Cart() {
           get(cartRef),
           get(cartTotalRef),
         ]);
-
         if (cartSnapshot.exists() && cartTotalSnapshot.exists()) {
           const cartData = cartSnapshot.val();
           const cartItemsArray = Object.values(cartData);
@@ -53,9 +54,9 @@ function Cart() {
         console.error(error);
       }
     };
+
     fetchCartData();
   }, [setCartItems, setCartTotal]);
-
 
 
 
@@ -66,7 +67,7 @@ function Cart() {
         {cartTotal===undefined || cartTotal===0 ? "" : 
           <div style={{ display: "flex" }}>
             <h2>Total: ₹{cartTotal}</h2>
-            <NavLink to="/orders" className={Style.buy_btn}>Proceed to buy</NavLink>
+            <button onClick={()=>placeOrder()} className={Style.buy_btn}>Proceed to buy</button>
           </div> }
       </div>
       {cartItems.length === 0 ? (
@@ -111,4 +112,5 @@ function Cart() {
   );
 }
 
+/** ------------------ EXPORTING MODULES ------------------ **/
 export default Cart;

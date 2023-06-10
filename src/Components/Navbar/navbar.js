@@ -1,49 +1,84 @@
-// import CSS
+/** ------------------ IMPORTING CSS ------------------ **/
 import Style from "./navbar.module.css";
-// import Router
-import {  NavLink, Outlet } from 'react-router-dom';
-// import Dependencies
+/** ------------------ IMPORTING ROUTER MODULES ------------------ **/
+import { NavLink, Outlet } from 'react-router-dom';
+/** ------------------ IMPORTING HOOKS ------------------ **/
 import { useValue } from '../../context';
 
 
+
+/** ------------------ Function to show the Navbar ------------------ **/
 function Navbar() {
-    const {userPresent, handleLogout, searchTerm, setSearchTerm} = useValue();
+  // Accessing values from the context
+  const { userPresent, handleLogout, searchTerm, setSearchTerm } = useValue();
 
-// Function to handle search term change
-    const handleSearchTermChange = (e) => {
-        setSearchTerm(e.target.value);
-    };
+  // Function to handle search term change
+  const handleSearchTermChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
 
-    return (
-        <>  
-            <div className={Style.navbar}>
-                <div className={Style.title}>
-                    Diagon Bazaar
-                </div>
-                {userPresent ?
-                <div className={Style.searchBar}>
-                    <input type="text" placeholder="Search..." 
-                    value={searchTerm} onChange={handleSearchTermChange}/>
-                </div> : "" }
-                <div className={Style.menu}>
-                    <NavLink to="/" style={({isActive})=>isActive ? { color: "#FF8C00", boxShadow: "0 2px 0 rgba(0, 0, 0, 0.2)" } : {}}> Home </NavLink>
-                    
-                    {userPresent ? <>
-                        <NavLink to="/myOrders" style={({isActive})=>isActive ? { color: "#FF8C00", boxShadow: "0 2px 0 rgba(0, 0, 0, 0.2)" } : {}}>  My orders </NavLink>
+  return (
+    <>
+      <div className={Style.navbar}>
+        <div className={Style.title}>
+          Diagon Bazaar
+        </div>
+        {userPresent &&
+          <div className={Style.searchBar}>
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchTerm}
+              onChange={handleSearchTermChange}
+            />
+          </div>
+        }
+        <div className={Style.menu}>
+          <NavLink
+            to="/"
+            style={({ isActive }) => isActive ? { color: "#FF8C00", boxShadow: "0 2px 0 rgba(0, 0, 0, 0.2)" } : {}}
+          >
+            Home
+          </NavLink>
 
-                        <NavLink to="/cart" style={({isActive})=>isActive ? { color: "#FF8C00", boxShadow: "0 2px 0 rgba(0, 0, 0, 0.2)" } : {}}> Cart</NavLink>
+          {userPresent ? (
+            <>
+              <NavLink
+                to="/orders"
+                style={({ isActive }) => isActive ? { color: "#FF8C00", boxShadow: "0 2px 0 rgba(0, 0, 0, 0.2)" } : {}}
+              >
+                My Orders
+              </NavLink>
 
-                        <NavLink onClick={handleLogout} to="/home"
-                            style={({isActive})=>isActive ? { color: "#FF8C00", boxShadow: "0 2px 0 rgba(0, 0, 0, 0.2)" } : {}}> Logout </NavLink> </>
-                    : 
-                        <NavLink to="/signin" style={({isActive})=>isActive ? { color: "#FF8C00", boxShadow: "0 2px 0 rgba(0, 0, 0, 0.2)" } : {}}> SignIn </NavLink>
-                    }
-                </div>
-            </div>
-            <Outlet/>
-        </>
+              <NavLink
+                to="/cart"
+                style={({ isActive }) => isActive ? { color: "#FF8C00", boxShadow: "0 2px 0 rgba(0, 0, 0, 0.2)" } : {}}
+              >
+                Cart
+              </NavLink>
 
-    );
+              <NavLink
+                onClick={handleLogout}
+                to="/home"
+                style={({ isActive }) => isActive ? { color: "#FF8C00", boxShadow: "0 2px 0 rgba(0, 0, 0, 0.2)" } : {}}
+              >
+                Logout
+              </NavLink>
+            </>
+          ) : (
+            <NavLink
+              to="/signin"
+              style={({ isActive }) => isActive ? { color: "#FF8C00", boxShadow: "0 2px 0 rgba(0, 0, 0, 0.2)" } : {}}
+            >
+              Sign In
+            </NavLink>
+          )}
+        </div>
+      </div>
+      <Outlet />
+    </>
+  );
 }
 
+/** ------------------ EXPORTING MODULES ------------------ **/
 export default Navbar;

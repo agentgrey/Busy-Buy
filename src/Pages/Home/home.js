@@ -1,16 +1,26 @@
+/** ------------------ IMPORTING CSS ------------------ **/
 import Style from './home.module.css';
-import Data from '../../Data/data';
-import { NavLink } from 'react-router-dom';
+/** ------------------ IMPORTING HOOKS ------------------ **/
 import { useValue } from '../../context';
+/** ------------------ IMPORTING COMPONENTS ------------------ **/
+import Data from '../../Data/data';
+/** ------------------ IMPORTING ROUTER MODULES ------------------ **/
+import { NavLink } from 'react-router-dom';
 
+
+
+/** ------------------ Function to display the home page ------------------ **/
 function Home() {
+  
   const { searchTerm, handleAdd} = useValue();
   const dataArray = Object.values(Data); 
 
-// Filter the products based on the search term
+/** ------------------ Filters data based on search term ------------------ **/
   const filteredProducts = dataArray.filter((item) =>
     item.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+
 
   return (
     <>
@@ -21,7 +31,7 @@ function Home() {
             <h2>{item.title}</h2>
             <h3>₹ {item.price}</h3>
             <NavLink>
-              <button onClick={()=>handleAdd(item)}>Add To Cart</button>
+              <button onClick={()=>handleAdd(item)} >Add To Cart</button>
             </NavLink>
           </div>
         ))}

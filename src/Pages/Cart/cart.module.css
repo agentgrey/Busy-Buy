@@ -78,10 +78,11 @@
 .buy_btn {
   background-color: #6f9fd6;
   padding: 3px 10px;
-  height: 35px;
+  height: 40px;
   text-decoration: none;
   color: #fff;
   font-size: 24px;
+  border: none;
   border-radius: 5px;
   transition: background-color 0.3s ease;
   margin-top: 13px;

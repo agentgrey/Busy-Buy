@@ -1,15 +1,18 @@
-// Import CSS
+/** ------------------ IMPORTING CSS ------------------ **/
 import "./index.css";
-// Import Components
+/** ------------------ IMPORTING HOOKS ------------------ **/
+import CustomContex from './context';
+/** ------------------ IMPORTING COMPONENTS ------------------ **/
 import Navbar from "./Components/Navbar/navbar";
 import SignUp from "./Pages/SignUpPage/signUp";
 import SignIn from "./Pages/SignInPage/signIn";
 import Home from "./Pages/Home/home";
 import Cart from "./Pages/Cart/cart";
-// Import Router
+import Order from "./Pages/Orders/orders";
+/** ------------------ IMPORTING ROUTER MODULES ------------------ **/
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-// import CustomContext
-import CustomContex from './context';
+
+
 
 function App() {
   const router = createBrowserRouter([
@@ -22,7 +25,7 @@ function App() {
         { path: '/signup', element: <SignUp /> },
         { path: '/signin', element: <SignIn /> },
         { path: '/cart', element: <Cart /> },
-        // { path: '/order', element: <Order /> }
+        { path: '/orders', element: <Order /> }
       ]
     }
   ]);

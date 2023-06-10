@@ -45,8 +45,3 @@
 .product button:hover {
   background-color: #f7b95c;
 }
-
-.product button:disabled {
-  background-color: #BDBDBD;
-  cursor: not-allowed;
-}
