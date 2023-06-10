@@ -2,7 +2,7 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
 // Importing Database
 import { signOut, onAuthStateChanged } from 'firebase/auth';
-import { ref, push, set, get, remove } from 'firebase/database';
+import { ref, push, set, get } from 'firebase/database';
 import { auth, database } from './firebaseInit';
 
 // context object
@@ -14,10 +14,10 @@ function useValue() {
 }
 
 function CustomContext({ children }) {
-  const [userPresent, setUserPresent] = useState(true);
+  const [userPresent, setUserPresent] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [cartItems, setCartItems] = useState([]);
-  const [cartTotal, setCartTotal] = useState();
+  const [cartTotal, setCartTotal] = useState(0);
 
 // Used for checking if the user is there or not.
   useEffect(() => {
@@ -51,6 +51,7 @@ function CustomContext({ children }) {
     try {
       const userId = auth.currentUser.uid; // current UserID
       const cartRef = ref(database, `usersCarts/${userId}/myCart`);
+      const cartTotalRef = ref(database, `usersCarts/${userId}/cartTotal`);
 
       const snapshot = await get(cartRef);
       const existingCartItems = snapshot.val() || {};
@@ -60,15 +61,26 @@ function CustomContext({ children }) {
       );
 
       if (existingCartItem) {
-        const updatedQty = existingCartItem.qty + 1;
-        existingCartItem.qty = updatedQty;
+      const updatedQty = existingCartItem.qty + 1;
+      existingCartItem.qty = updatedQty;
 
-        await set(cartRef, existingCartItems);
+      await set(cartRef, existingCartItems);
 
-        const updatedCartTotal = cartTotal + item.price;
-        await set(ref(database, `usersCarts/${userId}/cartTotal`), updatedCartTotal);
-        setCartTotal(updatedCartTotal);
-        console.log(cartItems);
+      const updatedCartTotal = cartTotal + item.price;
+      await set(cartTotalRef, updatedCartTotal);
+      setCartTotal(updatedCartTotal);
+
+      // Find the index of the item in the cartItems array
+      const itemIndex = cartItems.findIndex((cartItem) => cartItem.id === existingCartItem.id);
+
+      if (itemIndex !== -1) {
+        // Update the item quantity in the cartItems array
+        const updatedCartItems = [...cartItems];
+        updatedCartItems[itemIndex].qty = updatedQty;
+        setCartItems(updatedCartItems);
+      }
+      
+        console.log("Product qty inc: ", existingCartItem.title +"->" , existingCartItem.qty);
         // setCartItems(updatedQty);
         // toast.success("Item Count Increased!");
       } else {
@@ -87,45 +99,104 @@ function CustomContext({ children }) {
 
         await set(cartRef, existingCartItems);
 
-        const updatedCartTotal = cartTotal + item.price;
-        await set(ref(database, `usersCarts/${userId}/cartTotal`), updatedCartTotal);
+        const updatedCartTotal = cartTotal + (item.price);
+        await set(cartTotalRef, updatedCartTotal);
         setCartTotal(updatedCartTotal);
-        console.log(cartItems);
+        console.log("Product added: ", newItem.title);
         // setCartItems([...cartItems, newItem]);
         // toast.success("Item added to cart!");
       }
 
-      console.log("Product added: ");
     } catch (error) {
       console.error('Error adding item to cart:', error);
       // Display an error message to the user if necessary
     }
   }
 
-
 // Remove item from the cart
-  async function handleRemove(item) {
-    try {
-      // Find the index of the item in the cartItems array
-      const itemIndex = cartItems.findIndex((cartItem) => cartItem.id === item.id);
+async function handleRemove(item) {
+  try {
+    const userId = auth.currentUser.uid; // current UserID
+    const cartRef = ref(database, `usersCarts/${userId}/myCart`);
+    const cartTotalRef = ref(database, `usersCarts/${userId}/cartTotal`);
 
-      if (itemIndex !== -1) {
-        // Remove the item from the cartItems array
-        const updatedCartItems = [...cartItems];
-        updatedCartItems.splice(itemIndex, 1);
-        setCartItems(updatedCartItems);
+    const snapshot = await get(cartRef);
+    const existingCartItems = snapshot.val() || {};
 
-        // Calculate the new cart total
-        const updatedCartTotal = cartTotal - item.price;
-        setCartTotal(updatedCartTotal);
-      }
-    } catch (error) {
-      console.log(error);
+    // Find the item in the existing cart items
+    const itemKey = Object.keys(existingCartItems).find(
+      (key) => existingCartItems[key].id === item.id
+    );
+
+    if (itemKey) {
+      // Calculate the updated cart total
+      const updatedCartTotal = cartTotal - (item.qty*item.price);
+
+      // Remove the item from the existing cart items
+      delete existingCartItems[itemKey];
+
+      // Update the cart items and cart total in the database
+      await set(cartRef, existingCartItems);
+      await set(cartTotalRef, updatedCartTotal);
+
+      // Update the cart items and cart total in the local state
+      setCartItems(Object.values(existingCartItems));
+      setCartTotal(updatedCartTotal);
     }
+
+  } catch (error) {
+    console.error('Error removing item from cart:', error);
+    // Display an error message to the user if necessary
   }
+}
+
+// Decreases the quantity of the item
+async function handleDecrease(item) {
+  try {
+    const userId = auth.currentUser.uid; // current UserID
+    const cartRef = ref(database, `usersCarts/${userId}/myCart`);
+    const cartTotalRef = ref(database, `usersCarts/${userId}/cartTotal`);
+
+    const snapshot = await get(cartRef);
+    const existingCartItems = snapshot.val() || {};
+
+    // Find the item in the existing cart items
+    const itemKey = Object.keys(existingCartItems).find(
+      (key) => existingCartItems[key].id === item.id
+    );
+
+    if (itemKey) {
+      const existingCartItem = existingCartItems[itemKey];
+
+      // Decrease the quantity by 1
+      existingCartItem.qty--;
+
+      // Calculate the updated cart total
+      const updatedCartTotal = cartTotal - item.price;
+
+      // Update the cart item quantity and cart total in the database
+      await set(cartRef, existingCartItems);
+      await set(cartTotalRef, updatedCartTotal);
+
+      // Update the cart item quantity and cart total in the local state
+      setCartItems(Object.values(existingCartItems));
+      setCartTotal(updatedCartTotal);
+
+      // If the quantity is 1, remove the item from the cart
+      if(existingCartItem.qty===0) {
+        await handleRemove(item);
+      }
+      console.log("Product qty dec: ", existingCartItem.title +"->" , existingCartItem.qty);
+    }
+  } catch (error) {
+    console.error('Error decreasing item quantity:', error);
+    // Display an error message to the user if necessary
+  }
+}
+
 
   return (
-    <itemContext.Provider value={{ userPresent, handleLogout, searchTerm, setSearchTerm, cartItems, setCartItems, cartTotal, setCartTotal, handleAdd, handleRemove }}>
+    <itemContext.Provider value={{ userPresent, handleLogout, searchTerm, setSearchTerm, cartItems, setCartItems, cartTotal, setCartTotal, handleAdd, handleRemove, handleDecrease }}>
       {children}
     </itemContext.Provider>
   );

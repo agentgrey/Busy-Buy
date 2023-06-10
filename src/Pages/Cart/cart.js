@@ -12,8 +12,13 @@ import { database, auth } from '../../firebaseInit';
 
 function Cart() {
   // Access the cart items from the CartContext
-  const { cartItems, setCartItems, cartTotal, setCartTotal } = useValue();
-
+  const { cartItems,
+        setCartItems,
+        cartTotal,
+        setCartTotal,
+        handleRemove,
+        handleAdd,
+        handleDecrease} = useValue();
 
   useEffect(() => {
     const user = auth.currentUser;
@@ -49,13 +54,16 @@ function Cart() {
       }
     };
     fetchCartData();
-  }, []);
+  }, [setCartItems, setCartTotal]);
+
+
+
 
   return (
     <div className={Style.cartContainer}>
       <div className={Style.heading}>
         <h1>My Cart</h1>
-        {cartTotal===undefined ? "" : 
+        {cartTotal===undefined || cartTotal===0 ? "" : 
           <div style={{ display: "flex" }}>
             <h2>Total: ₹{cartTotal}</h2>
             <NavLink to="/orders" className={Style.buy_btn}>Proceed to buy</NavLink>
@@ -76,20 +84,20 @@ function Cart() {
                 <div className={Style.quantityControls}>
                   <button
                     className={Style.decreaseButton}
-                    // onClick={() => handleDecrease(item.id)}
+                    onClick={() => handleDecrease(item)}
                   >
                     -
                   </button>
                   <span className={Style.quantity}>{item.qty}</span>
                   <button
                     className={Style.increaseButton}
-                    // onClick={() => handleIncrease(item.id)}
+                    onClick={() => handleAdd(item)}
                   >
                     +
                   </button>
                   <button
                     className={Style.removeButton}
-                    // onClick={() => handleRemove(item.id)}
+                    onClick={() => handleRemove(item)}
                   >
                     Remove From Cart
                   </button>
